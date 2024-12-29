@@ -21,7 +21,7 @@ LFU 的特性：
 + 双向链表：为了能够在`O(1)`时间内删除一个键值对，我们使用链表来管理缓存键值对
 + 为了能够实现 addLast、removeFirst 和 removeLast 操作，我们需要使用双向链表
 
-![LFU数据结构](http://hunt-cdn.eyescode.top/content/54e9f7ca-a34a-0510-a793-09ed20c79b61.jpg)
+![LFU数据结构](http://oss.eyescode.top/eyeshunt/content/54e9f7ca-a34a-0510-a793-09ed20c79b61.jpg)
 
 # 算法实现
 

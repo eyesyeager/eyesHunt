@@ -37,7 +37,7 @@
 # 三：时间轮算法
 
 先上一张时间轮的图:
-![时间轮算法](http://hunt-cdn.eyescode.top/content/86773247-79b8-279d-0791-b03452c84647.png)
+![时间轮算法](http://oss.eyescode.top/eyeshunt/content/86773247-79b8-279d-0791-b03452c84647.png)
 
 时间轮算法可以类比于时钟，如上图箭头（指针）按某一个方向按固定频率轮动，每一次跳动称为一个 tick。这样可以看出定时轮有个 3 个重要的属性参数：
 + ticksPerWheel（一轮的 tick 数）
@@ -99,7 +99,7 @@ redis> ZRANGE page_rank 0 -1 WITHSCORES
 ```
 
 那么如何实现呢？我们将订单超时时间戳与订单号分别设置为 score 和 member，系统扫描第一个元素判断是否超时，具体如下图所示：
-![redis实现思路](http://hunt-cdn.eyescode.top/content/c762b7674ea845e464a3be0622473c6e.png)
+![redis实现思路](http://oss.eyescode.top/eyeshunt/content/c762b7674ea845e464a3be0622473c6e.png)
 
 然而，如果不做额外处理的话，在高并发条件下，多消费者可能会取到同一个订单号，解决方案有如下几种：
 + 加分布式锁，性能低

@@ -27,7 +27,7 @@
 2. 然后计算电话号码在这个 int 数字中具体的 bit 的位置，`100 % 32 = 4`。取余为 0 左移 1 位，故取余为4左移5位，得到000...000010000
 3. 将位图中对应的位设置为 1，即arr[2] = arr[2] | 000..00010000
 
-![bitmap](http://hunt-cdn.eyescode.top/content/a3dd11e2e392ebfef1e2cef317936171.png)
+![bitmap](http://oss.eyescode.top/eyeshunt/content/a3dd11e2e392ebfef1e2cef317936171.png)
 
 最后，统计位图中bit值为1的数量，便能得到不同电话号码的个数了
 

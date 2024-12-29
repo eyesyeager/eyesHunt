@@ -1,4 +1,4 @@
-![SpringBoot 启动流程](http://hunt-cdn.eyescode.top/content/cc5165cd-ba4a-fa17-d2f6-a47fa9561171.jpg)
+![SpringBoot 启动流程](http://oss.eyescode.top/eyeshunt/content/cc5165cd-ba4a-fa17-d2f6-a47fa9561171.jpg)
 
 Springboot启动时，第一件重要事件就是初始化 SpringApplication，并主要完成如下事情。
 1. 设置源。实际就是设置 Spring 容器启动时依赖的初始配置类，也就是 Springboot 中的启动类

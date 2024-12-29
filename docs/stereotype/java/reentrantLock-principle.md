@@ -4,7 +4,7 @@
 
 # ReentrantLock 结构
 
-![ReentrantLock](http://hunt-cdn.eyescode.top/content/4194b5d4-fdee-4847-ed04-0ef7781377a9.png)
+![ReentrantLock](http://oss.eyescode.top/eyeshunt/content/4194b5d4-fdee-4847-ed04-0ef7781377a9.png)
 
 ReentrantLock 继承自父类 Lock，然后有 3 个内部类：
 + Sync 内部类继承自 AQS
@@ -96,7 +96,7 @@ final boolean nonfairTryAcquire(int acquires) {
 }
 ```
 
-![获取锁](http://hunt-cdn.eyescode.top/content/90b3204b-14b5-b7c1-6136-2c4acbc1988d.png)
+![获取锁](http://oss.eyescode.top/eyeshunt/content/90b3204b-14b5-b7c1-6136-2c4acbc1988d.png)
 
 **锁的释放**
 
@@ -139,7 +139,7 @@ protected final boolean tryRelease(int releases) {
 }
 ```
 
-![释放锁](http://hunt-cdn.eyescode.top/content/9932972c-7985-3a62-5676-93c982d09b74.png)
+![释放锁](http://oss.eyescode.top/eyeshunt/content/9932972c-7985-3a62-5676-93c982d09b74.png)
 
 # 公平锁的实现原理
 
@@ -187,7 +187,7 @@ protected final boolean tryAcquire(int acquires) {
 }
 ```
 
-![获取锁](http://hunt-cdn.eyescode.top/content/3fece9cf-c79f-b78a-e30e-d092b3740d5a.png)
+![获取锁](http://oss.eyescode.top/eyeshunt/content/3fece9cf-c79f-b78a-e30e-d092b3740d5a.png)
 
 **tryRelease锁的释放**
 

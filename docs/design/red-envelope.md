@@ -1,7 +1,7 @@
 # 一：微信红包业务
 
 我们先了解下微信红包支付的流程：
-![微信红包支付流程](http://hunt-cdn.eyescode.top/content/d40a7e2b-fde6-f092-0e42-b128c83f52aa.png)
+![微信红包支付流程](http://oss.eyescode.top/eyeshunt/content/d40a7e2b-fde6-f092-0e42-b128c83f52aa.png)
 
 微信红包的核心知识如下：
 + 包红包：系统给每个红包分配一个唯一ID，也就是发红包的订单号，然后将红包发送给用户，红包的个数，红包金额写入到存储。
@@ -11,7 +11,7 @@
 
 最后的拆红包过程类似于一个秒杀活动的过程，需要做好库存扣减和秒杀记录的操作。更新库存就是更新红包发送的订单，写入秒杀记录就是写入红包领取的信息流水。还需要以用户为中心记录用户整体的红包领取记录。最后调用支付系统将拆红包后的金额转入用户零钱中，成功之后更新抢红包的订单状态为转账成功。
 
-![微信红包](http://hunt-cdn.eyescode.top/content/c6ae816b-5eae-43e2-cbb2-11d36d0ff02e.png)
+![微信红包](http://oss.eyescode.top/eyeshunt/content/c6ae816b-5eae-43e2-cbb2-11d36d0ff02e.png)
 
 # 二：技术难点
 
@@ -29,7 +29,7 @@
 
 各个SET之间相互独立，互相解耦。并且同一个红包ID的所有请求，包括发红包、抢红包、拆红包、查详情详情等，垂直stick到同一个SET内处理，高度内聚。通过这样的方式，系统将所有红包请求这个巨大的洪流分散为多股小流，互不影响，分而治之，如下图所示。
 
-![系统垂直SET化](http://hunt-cdn.eyescode.top/content/e49aeaad-a228-134f-e338-1eb96a4a33e2.jpg)
+![系统垂直SET化](http://oss.eyescode.top/eyeshunt/content/e49aeaad-a228-134f-e338-1eb96a4a33e2.jpg)
 
 这个方案解决了同时存在海量事务级操作的问题，将海量化为小量。
 
@@ -41,13 +41,13 @@
 
 微信红包系统设计了分布式的、轻巧的、灵活的FIFO队列方案。首先，将同一个红包ID的所有请求stick到同一台Server。上面SET化方案已经介绍，同个红包ID的所有请求，按红包ID stick到同个SET中。不过在同个SET中，会存在多台Server服务器同时连接同一台DB（基于容灾、性能考虑，需要多台Server互备、均衡压力）。为了使同一个红包ID的所有请求，stick到同一台Server服务器上，在SET化的设计之外，微信红包系统添加了一层基于红包ID hash值的分流，如下图所示：
 
-![hash分流](http://hunt-cdn.eyescode.top/content/62c97528-0e74-c429-e975-9a9c43d2c80c.jpg)
+![hash分流](http://oss.eyescode.top/eyeshunt/content/62c97528-0e74-c429-e975-9a9c43d2c80c.jpg)
 
 其次，设计单机请求排队方案。
 
 将stick到同一台Server上的所有请求在被接收进程接收后，按红包ID进行排队。然后串行地进入worker进程（执行业务逻辑）进行处理，从而达到排队的效果，如下图所示：
 
-![排队](http://hunt-cdn.eyescode.top/content/be837988-9e89-b8a3-cc98-99633cb2e235.jpg)
+![排队](http://oss.eyescode.top/eyeshunt/content/be837988-9e89-b8a3-cc98-99633cb2e235.jpg)
 
 最后，增加memcached控制并发。
 

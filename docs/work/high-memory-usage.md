@@ -4,7 +4,7 @@
 
 可以通过使用 linux 中的 top 命令查询服务器中占用内存的状态。默认是 CPU 排序，我们可以调整为内存排序，整理不同的服务按键不一样，这里是在窗口点击“m”键：
 
-![top](http://hunt-cdn.eyescode.top/content/d6b516d9-20dd-41a7-4951-1a07e084c58e.png)
+![top](http://oss.eyescode.top/eyeshunt/content/d6b516d9-20dd-41a7-4951-1a07e084c58e.png)
 
 **找到高内存的类**
 
@@ -14,7 +14,7 @@
 jmap -histo <pid> | head -20
 ```
 
-![hmap](http://hunt-cdn.eyescode.top/content/1ef8874f-3fba-79be-f898-9e06e3b16f87.png)
+![hmap](http://oss.eyescode.top/eyeshunt/content/1ef8874f-3fba-79be-f898-9e06e3b16f87.png)
 
 # 紧急解决方案
 

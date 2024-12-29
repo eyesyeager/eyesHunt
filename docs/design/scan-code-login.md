@@ -1,7 +1,7 @@
 扫码登录功能主要分为三个阶段：**待扫描、已扫描待确认、已确认**。
 
 整体流程图如图:
-![扫码登录流程图](http://hunt-cdn.eyescode.top/content/33ffe8f30ab82cc2831631e112e6b796.png)
+![扫码登录流程图](http://oss.eyescode.top/eyeshunt/content/33ffe8f30ab82cc2831631e112e6b796.png)
 
 下面分阶段来看看设计原理。
 

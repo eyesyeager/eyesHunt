@@ -17,11 +17,11 @@ CLH 锁是对自旋锁的一种改进，是一个虚拟的双向队列（虚拟�
 + prev：前驱节点
 + next：后继节点
 
-![CLH](http://hunt-cdn.eyescode.top/content/50661d8f-e68e-8586-e9c4-1b471ea779c4.png)
+![CLH](http://oss.eyescode.top/eyeshunt/content/50661d8f-e68e-8586-e9c4-1b471ea779c4.png)
 
 AQS（AbstractQueuedSynchronizer）的核心原理图：
 
-![AQS 核心原理](http://hunt-cdn.eyescode.top/content/718b71fa-cdc5-cb26-fe0a-634f0e0bbc3e.png)
+![AQS 核心原理](http://oss.eyescode.top/eyeshunt/content/718b71fa-cdc5-cb26-fe0a-634f0e0bbc3e.png)
 
 AQS 使用 int 成员变量 state 表示同步状态，通过内置的 FIFO 线程等待/等待队列 来完成获取资源线程的排队工作。state 变量由 volatile 修饰，用于展示当前临界资源的获锁情况：
 

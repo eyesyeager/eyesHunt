@@ -1,6 +1,6 @@
 # tomcat 架构
 
-![架构图](http://hunt-cdn.eyescode.top/content/7cb7f95a-31f6-b571-bad6-71642ed4e3ef.png)
+![架构图](http://oss.eyescode.top/eyeshunt/content/7cb7f95a-31f6-b571-bad6-71642ed4e3ef.png)
 
 + Server：服务器。Tomcat 就是一个 Server 服务器
 + Service：在服务器中可以有多个 Service，只不过在我们常用的这套 Catalina 容器的 Tomcat 中只包含一个 Service，在 Service 中包含连接器和容器。一个完整的 Service 才能完成对请求的接收和处理

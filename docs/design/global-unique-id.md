@@ -52,7 +52,7 @@ UUID （Universally Unique Identifier），通用唯一识别码的缩写。UUID
 
 这样的划分之后相当于在一毫秒一个数据中心的一台机器上可产生 4096 个有序的不重复的 ID。但是我们 IDC 和机器数肯定不止一个，所以毫秒内能生成的有序ID数是翻倍的。
 
-![雪花ID](http://hunt-cdn.eyescode.top/content/03ef109e-318e-4f9d-a223-042602dc7554.png)
+![雪花ID](http://oss.eyescode.top/eyeshunt/content/03ef109e-318e-4f9d-a223-042602dc7554.png)
 
 雪花算法提供了一个很好的设计思想，雪花算法生成的ID是趋势递增，不依赖数据库等第三方系统，以服务的方式部署，稳定性更高，生成ID的性能也是非常高的，而且可以根据自身业务特性分配bit位，非常灵活。
 
@@ -68,7 +68,7 @@ UUID （Universally Unique Identifier），通用唯一识别码的缩写。UUID
 
 假设有三台机器，则 DB1 中order表的起始 ID 值为 1，DB2 中 order 表的起始值为 2，DB3 中 order 表的起始值为 3，它们自增的步长都为 3，则它们的 ID 生成范围如下图所示：
 
-![自增](http://hunt-cdn.eyescode.top/content/6b6bea2e-32cd-b5a3-2e2b-1ef641836f79.png)
+![自增](http://oss.eyescode.top/eyeshunt/content/6b6bea2e-32cd-b5a3-2e2b-1ef641836f79.png)
 
 通过这种方式明显的优势就是依赖于数据库自身不需要其他资源，并且ID号单调自增，可以实现一些对ID有特殊要求的业务。
 

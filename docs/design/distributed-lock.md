@@ -28,7 +28,7 @@
 5. 如果版本号已经被更新了的话，那么其他线程以查出来的旧版本号就无法匹配得到数据行了，在这个过程中只有一个线程能够更新
 6. 释放锁的过程就是将版本号改为当前时间戳
 
-![乐观锁实现分布式锁](http://hunt-cdn.eyescode.top/content/6e5d4507-9632-270c-42c6-951072478204.png)
+![乐观锁实现分布式锁](http://oss.eyescode.top/eyeshunt/content/6e5d4507-9632-270c-42c6-951072478204.png)
 
 # 基于Redis实现
 
@@ -47,12 +47,12 @@
 
 集群模式下，加锁会变得复杂一点。如下图，如果线程一在 Redis 的 master 节点上拿到了锁，但是加锁的 key 还没同步到 slave 节点。恰好这时，master 节点发生故障，一个 slave 节点就会升级为 master 节点。线程二就可以顺理成章获取同个 key 的锁啦，但线程一也已经拿到锁了，锁的安全性就没了。
 
-![集群模式](http://hunt-cdn.eyescode.top/content/cf3659a6-0696-8679-bb54-dc9d33f23971.png)
+![集群模式](http://oss.eyescode.top/eyeshunt/content/cf3659a6-0696-8679-bb54-dc9d33f23971.png)
 
 为了解决这个问题，Redis 作者 antirez 提出一种高级的分布式锁算法：Redlock。它的核心思想是这样的：部署多个 Redis master，以保证它们不会同时宕掉。并且这些 master 节点是完全相互独立的，相互之间不存在数据同步。同时，需要确保在这多个 master 实例上，是与在 Redis 单实例，使用相同方法来获取和释放锁。
 
 我们假设当前有 5 个 Redis master 节点，在 5 台服务器上面运行这些 Redis 实例：
-![集群示例](http://hunt-cdn.eyescode.top/content/9c482024-d9ef-1bdf-843e-4b065917d387.png)
+![集群示例](http://oss.eyescode.top/eyeshunt/content/9c482024-d9ef-1bdf-843e-4b065917d387.png)
 
 RedLock 的实现步骤：
 1. 获取当前时间，以毫秒为单位
@@ -73,7 +73,7 @@ RedLock 的实现步骤：
 
 Redisson 是一个开源的 Java 语言 Redis 客户端，提供了很多开箱即用的功能，不仅仅包括多种分布式锁的实现。并且，Redisson 还支持 Redis 单机、Redis Sentinel、Redis Cluster 等多种部署架构。Redisson 中的分布式锁自带自动续期机制，使用起来非常简单，原理也比较简单，其提供了一个专门用来监控和续期锁的 Watch Dog（看门狗），如果操作共享资源的线程还未执行完成的话，Watch Dog 会不断地延长锁的过期时间，进而保证锁不会因为超时而被释放。
 
-![看门狗工作机制](http://hunt-cdn.eyescode.top/content/052094b1-92a7-de97-10fe-637707c65dee.jpg)
+![看门狗工作机制](http://oss.eyescode.top/eyeshunt/content/052094b1-92a7-de97-10fe-637707c65dee.jpg)
 
 # 基于Zookeeper实现
 
@@ -90,7 +90,7 @@ ZooKeeper 分布式锁是基于 临时顺序节点 和 Watcher（事件监听器
 2. 成功获取锁的客户端在出现故障之后，对应的子节点由于是临时顺序节点，也会被自动删除，避免了锁无法被释放
 3. 我们前面说的事件监听器其实监听的就是这个子节点删除事件，子节点删除就意味着锁被释放
 
-![zookeeper分布式锁](http://hunt-cdn.eyescode.top/content/5a2b5ce3-fb00-c4a0-e466-bc6165a1e98f.png)
+![zookeeper分布式锁](http://oss.eyescode.top/eyeshunt/content/5a2b5ce3-fb00-c4a0-e466-bc6165a1e98f.png)
 
 实际项目中，推荐使用 Curator 来实现 ZooKeeper 分布式锁。Curator 是 Netflix 公司开源的一套 ZooKeeper Java 客户端框架，相比于 ZooKeeper 自带的客户端 zookeeper 来说，Curator 的封装更加完善，各种 API 都可以比较方便地使用。
 

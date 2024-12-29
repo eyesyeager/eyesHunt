@@ -83,7 +83,7 @@ BASE 是对 CAP 中 AP 的一个扩展，它解决了 CAP 中理论没有网络�
 3. 如果库存和积分系统都返回 ok，那么事务管理器就会通知所有系统提交事务，库存系统更新库存，积分系统更新积分
 4. 如果库存和积分系统有任何一个返回拒绝，那么那么事务管理器就会通知所有参与者发起回滚
 
-![订单系统](http://hunt-cdn.eyescode.top/content/ea173e25-e9c8-a279-dc18-1e0cd6975409.png)
+![订单系统](http://oss.eyescode.top/eyeshunt/content/ea173e25-e9c8-a279-dc18-1e0cd6975409.png)
 
 优点：
 + 尽量保证了数据的强一致
@@ -100,7 +100,7 @@ BASE 是对 CAP 中 AP 的一个扩展，它解决了 CAP 中理论没有网络�
 
 三阶段提交（Three-phase commit）也叫三阶段提交协议，是在计算机网络及数据库的范畴下，使得一个分布式系统内的所有节点能够执行事务的提交的一种分布式算法。3PC 是为解决 2PC 的缺点而设计的。
 
-![3pc](http://hunt-cdn.eyescode.top/content/548f2437-1b20-c4c4-2d2d-b83d2f665798.jpg)
+![3pc](http://oss.eyescode.top/eyeshunt/content/548f2437-1b20-c4c4-2d2d-b83d2f665798.jpg)
 
 3PC 提交升级点（基于 2PC）：
 + 3PC 引入了超时机制
@@ -119,7 +119,7 @@ TCC 的全称是：Try、Confirm、Cancel：
 
 可以参考下图理解：
 
-![TCC](http://hunt-cdn.eyescode.top/content/00487c67-d09d-0134-7d47-6d4133c55bb8.png)
+![TCC](http://oss.eyescode.top/eyeshunt/content/00487c67-d09d-0134-7d47-6d4133c55bb8.png)
 
 TCC 事务机制相比于上面介绍的两阶段提交，解决了其几个缺点：
 + 解决了协调者单点，由主业务方发起并完成这个业务活动。业务活动管理器也变成多点，引入集群
@@ -142,7 +142,7 @@ AT 模式分成两阶段来工作，我们先省略部分细节来整体了解�
   1. 因为第一阶段已经提交了本地事务，数据已经更新过了，这个时候如果没有报错，那么直接删除掉 undo_log 以及行锁的数据即可
   2. 但是如果发生了报错，根据 undo_log 来回退数据即可
 
-![AT模式](http://hunt-cdn.eyescode.top/content/0d87f23e-5978-c7ea-f786-275135dcd0d2.png)
+![AT模式](http://oss.eyescode.top/eyeshunt/content/0d87f23e-5978-c7ea-f786-275135dcd0d2.png)
 
 这个就是 AT 模式执行的两阶段的整体视角，我们可以体会到的是 AT 模式下，自动帮助我们生成了undo_log。且一阶段、二阶段的提交都是由 seata 完成的，并不需要我们写代码来实现，所以它的无代码入侵体现在这里。
 
@@ -153,7 +153,7 @@ AT 模式分成两阶段来工作，我们先省略部分细节来整体了解�
 
 下面我们用一张图来表明各自的作用关系（这张图请大家静下心，跟着标识按序阅读下去你就会明白三个角色之间是如何合作的）：
 
-![AT模式](http://hunt-cdn.eyescode.top/content/77a7cfd9-fd4f-ff11-f333-130587673d01.png)
+![AT模式](http://oss.eyescode.top/eyeshunt/content/77a7cfd9-fd4f-ff11-f333-130587673d01.png)
 
 同时基于上图，我们也知道全局事务由 TM 发起，本地事务由各服务自己管理，本地事务和全局事务之间是通过 TC 来进行协调。
 
@@ -170,7 +170,7 @@ AT应用场景总结：
 
 Saga 是由一系列的本地事务构成。每一个本地事务在更新完数据库之后，会发布一条消息或者一个事件来触发 Saga 中的下一个本地事务的执行。如果一个本地事务因为某些业务规则无法满足而失败，Saga 会执行在这个失败的事务之前成功提交的所有事务的补偿操作。
 
-![saga](http://hunt-cdn.eyescode.top/content/5c9ce6f4-bbdd-e023-0fe0-354394778bd6.png)
+![saga](http://oss.eyescode.top/eyeshunt/content/5c9ce6f4-bbdd-e023-0fe0-354394778bd6.png)
 
 Saga 的实现有很多种方式，其中最流行的两种方式分别是基于事件的方式和基于命令的方式。
 
@@ -178,7 +178,7 @@ Saga 的实现有很多种方式，其中最流行的两种方式分别是基于
 
 这种方式没有协调中心，整个模式的工作方式就像舞蹈一样，各个舞蹈演员按照预先编排的动作和走位各自表演，最终形成一只舞蹈。处于当前 Saga 下的各个服务，会产生某类事件，或者监听其它服务产生的事件并决定是否需要针对监听到的事件做出响应。
 
-![基于事件](http://hunt-cdn.eyescode.top/content/83b24206-0a0c-f435-9afd-af7a7711ea01.png)
+![基于事件](http://oss.eyescode.top/eyeshunt/content/83b24206-0a0c-f435-9afd-af7a7711ea01.png)
 
 优点：简单且容易理解。各参与方相互之间无直接沟通，完全解耦。这种方式比较适合整个分布式事务只有2-4个步骤的情形。
 
@@ -188,7 +188,7 @@ Saga 的实现有很多种方式，其中最流行的两种方式分别是基于
 
 这种方式的工作形式就像一只乐队，由一个指挥家（协调中心）来协调大家的工作。协调中心来告诉 Saga 的参与方应该执行哪一个本地事务
 
-![基于命令](http://hunt-cdn.eyescode.top/content/203d7312-61b2-5c93-2d4c-326a4dd4dbc9.jpg)
+![基于命令](http://oss.eyescode.top/eyeshunt/content/203d7312-61b2-5c93-2d4c-326a4dd4dbc9.jpg)
 
 优点：
 + 避免了业务方之间的环形依赖
@@ -204,7 +204,7 @@ Saga 的实现有很多种方式，其中最流行的两种方式分别是基于
 
 本地消息表的核心是将需要分布式处理的任务通过消息日志的方式来异步执行。消息日志可以存储到本地文本、数据库或消息队列，再通过业务规则自动或人工发起重试。人工重试更多的是应用于支付场景，通过对账系统对事后问题的处理。
 
-![本地消息表](http://hunt-cdn.eyescode.top/content/3ab778b6-eb32-9f82-a483-f451a7b16a6b.png)
+![本地消息表](http://oss.eyescode.top/eyeshunt/content/3ab778b6-eb32-9f82-a483-f451a7b16a6b.png)
 
 对于本地消息队列来说核心是把大事务转变为小事务。举个用100元去买一瓶水的例子：
 1. 当你扣钱的时候，你需要在你扣钱的服务器上新增加一个本地消息表，你需要把你扣钱和写入减去水的库存到本地消息表放入同一个事务（依靠数据库本地事务保证一致性
@@ -220,7 +220,7 @@ Saga 的实现有很多种方式，其中最流行的两种方式分别是基于
 
 MQ事务方案整体流程和本地消息表的流程很相似，如下图：
 
-![MQ事务](http://hunt-cdn.eyescode.top/content/355d2a8a-18ec-144f-ed44-76f133868595.png)
+![MQ事务](http://oss.eyescode.top/eyeshunt/content/355d2a8a-18ec-144f-ed44-76f133868595.png)
 
 相比本地消息表方案，MQ 事务方案优点是：
 + 消息数据独立存储，降低业务系统与消息系统之间的耦合

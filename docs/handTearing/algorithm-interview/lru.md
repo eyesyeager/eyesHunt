@@ -20,7 +20,7 @@ LRU（Least Recently Used，最近最久未使用）算法是⼀种缓存淘汰�
 
 因此 LRU cache 的数据结构的必要的条件：查找快，插⼊快，删除快，有顺序之分。那么什么数据结构同时符合上述条件呢？哈希表查找快，但是数据⽆固定顺序； 链表有顺序之分，插⼊删除快，但是查找慢。所以结合⼀下，形成⼀种新的数据结构：哈希链表。如下图所示：
 
-![哈希链表](http://hunt-cdn.eyescode.top/content/6e38cd32-7ec3-8ca5-9739-83af7780f0ae.png)
+![哈希链表](http://oss.eyescode.top/eyeshunt/content/6e38cd32-7ec3-8ca5-9739-83af7780f0ae.png)
 
 # 算法实现
 

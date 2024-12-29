@@ -31,7 +31,7 @@ Affect(class-cnt:2 , method-cnt:2) cost in 525 ms.
 
 # 常见优化方案
 
-![优化方案](http://hunt-cdn.eyescode.top/content/9d3eb398-c2c3-947f-729a-4b75f51b936a.png)
+![优化方案](http://oss.eyescode.top/eyeshunt/content/9d3eb398-c2c3-947f-729a-4b75f51b936a.png)
 
 ------
 摘自：

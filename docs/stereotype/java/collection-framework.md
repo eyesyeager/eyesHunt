@@ -4,7 +4,7 @@ Java 集合类主要由两个根接口 Collection 和 Map 派生出来的，Coll
 
 Java集合框架图如下：
 
-![Java集合框架](http://hunt-cdn.eyescode.top/content/26aac0d6-33cb-5b7b-1737-fd3f48f0fc67.png)
+![Java集合框架](http://oss.eyescode.top/eyeshunt/content/26aac0d6-33cb-5b7b-1737-fd3f48f0fc67.png)
 
 说明如下：
 + List 代表了有序可重复集合，可直接根据元素的索引来访问
